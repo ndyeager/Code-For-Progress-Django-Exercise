@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Bootstrap CSS and JavaScript CDN -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+  <!-- Jumbotron -->
+  <div style="background:#2F8F75; color:white; !important"  class="jumbotron"><!-- Inline styling -->
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+    <h1 class="lead text-center"><strong>Questions on Social Justice</strong></h1>
+    <h3 class="lead text-center" style="color:#92DCE0; !important"><strong>Social Justice</strong> is the view that everyone deserves equal economic, political and social rights and opportunities. Below are a few questions regarding social justice issues.</h3>
+      </div>
+    </div>
+  </div><!-- End of Jumbotron -->
+
+  <!-- Question Container -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <h1 style="color:#428F89; !important">Recent Social Justice Questions</h1><!-- Inline styling -->
+        <!-- If theres a question in the 'question_list' then -->
+        {% if question_list %}
+          <!-- Print each question in 'question_list' in <h3> tags -->
+          {% for question in question_list %}
+            <!-- Each <h3> tag includes a link to the question using 'question.id' as an identifer -->
+            <h2 class="lead"><a href="{% url 'detail' question.id %}"/>{{question.question}}</a></h2>
+          {% endfor %}
+        <!-- If not, then will print -->
+        {% else %}
+          <p>No questions are available</p>
+        {% endif%}<!-- Ends if statement -->
+      </div>
+    </div>
+  </div><!-- End of Container -->
+<br>
+<br>
+<br>
+<br>
+
+<!-- Jquery JavaScript CDN  -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</body>
+<html>
+

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Bootstrap CSS and JavaScript CDN -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<!-- Jumbotrom -->
+	<div style="background:#2F8F75; color:white; !important"  class="jumbotron"><!-- Inline styling -->
+    <div class="row">
+      <div class="container">
+    	<h1 class="lead text-center"><strong>Questions on Social Justice</strong></h1>
+      </div>
+    </div>
+  </div><!-- End of Jumbotron -->
+
+  <!-- Question Container -->
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+      	<!-- Gets question text from the question variable and presents it on the page -->
+ 		<h1 style="color:#428F89; !important">"{{ question.question }}"</h1><!-- Inline styling -->
+      </div>
+    </div>
+  </div><!-- End of Question Container -->
+  <br><!-- Line Break -->
+
+  <!-- Comments Container -->
+  <div class="container" style="color:#496D89; !important"><!-- Inline styling -->
+  	<div class="row">
+  		<div class="col-xs-12 col-md-8 col-md-offset-2">
+  			<!-- If statement to print comments on the page if comments are present -->
+  			{% if question.comment_set.all %}
+  			<ul class="list-group">
+  				<!-- If above statement is true, then comments will be print in a list -->
+  				{% for comment in question.comment_set.all %}
+			  	<li class="list-group-item lead list-group-item-info">{{ comment.comment }}</li>
+				{% endfor %}
+			</ul>
+			<!-- If the above statment in false, will print text below prompting user to leave comment -->
+			{% else %}
+				<h3>Looks like there aren't any comments for this question. Be the first!</h3>
+				<br>
+			<!-- End IF statement -->
+			{% endif %}
+  		</div>
+  	</div>
+  </div><!-- End of Comment Container -->
+
+  <!-- Comment Form Container -->
+  <div class="container">
+  	<div class="row">
+  		<div class="col-xs-12 col-md-8 col-md-offset-2">
+  			<div class="panel panel-default">
+  				<div class="panel-body">
+  					 <div class="panel-heading lead" style="color:#428F89; !important">Leave a Comment</div><!-- Inline styling -->
+		  			{% load bootstrap %} <!-- Loads Bootstrap Python Module -->
+		  			<!-- Comment Form -->
+		  			<form action="" method="POST">
+		  				{% csrf_token %} <!-- Protects agianst Cross Site Request Forgeries -->
+		  				<div class="form-group">
+		  					{{ form|bootstrap_horizontal }} <!-- Comment Form -->
+					    </div>
+					    <br><!-- Line Break -->
+					    <br><!-- Another Line Break -->
+					    <br><!-- And Another Line Break -->
+						<input type="submit" value="Leave Comment" class="btn btn-info btn-xs pull-right"/><!-- Form Submit Button -->
+					</form><!-- End of Comment Form -->
+				</div>
+			</div>
+  		</div>
+  	</div>
+  </div><!-- End of Container -->
+</div>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Jquery JavaScript CDN  -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+</body>
+<html>
